@@ -73,10 +73,10 @@ variable "root_storage_delete_on_termination" {
   default = true
 }
 
-variable "proxy_auth_user" {
+variable "proxy_auth_type" {
   type = string
-  description = "string, if proxy_api_or_app is 'app', this sets the basic auth username; if empty, then basic auth user will be the username"
-  default = ""
+  description = "string, auth types supported are 'apitoken' or 'basicauth'"
+  default = "basicauth"
 }
 
 variable "proxy_auth_pass" {
@@ -85,20 +85,3 @@ variable "proxy_auth_pass" {
   default = ""
 }
 
-variable "proxy_expose_logfiles" {
-  type = string
-  description = "a comma separated list of log file locations to expose on the web, at /logs/ e.g. /var/log/mylog.log"
-  default = "/home/ubuntu/text-generation-webui.log"
-}
-
-variable "tgwui_version" {
-  type = string
-  description = "string, version of text-generation-webui to install"
-  default = "main"
-}
-
-variable "tgwui_cli_flags" {
-  type = string
-  description = "string, flags to pass to text-generation-webui installation script"
-  default = ""
-}

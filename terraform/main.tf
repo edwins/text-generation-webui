@@ -1,12 +1,11 @@
 module "app_proxy" {
-    # source = "git::https://gitlab.com/cyverse/cacao-tf-os-ops.git//single-image-app-proxy?ref=2023-12-13"
-    source = "git::https://gitlab.com/cyverse/cacao-tf-os-ops.git//single-image-app-proxy?ref=js2"
+    source = "git::https://gitlab.com/cyverse/cacao-tf-os-ops.git//single-image-app-proxy?ref=2023-12-03"
 
     # this is an example of hardcoding the distro because you don't want people to change it
     image_name = "Featured-Ubuntu22"
     proxy_auth_type = "basicauth"
     proxy_target_port = 7860
-    # proxy_auth_user = "appuser"
+    proxy_auth_user = "myappuser"
 
     # add this to your inputs.tf
     username = var.username
@@ -16,52 +15,45 @@ module "app_proxy" {
     instance_count = var.instance_count
     flavor = var.flavor
     keypair = var.keypair
-    power_state = var.power_state
-    user_data = var.user_data
-    proxy_auth_user = local.proxy_auth_user
     proxy_auth_pass = var.proxy_auth_pass # leaving this blank will generate a random password
-    proxy_expose_logfiles = "/var/log/text-generation-webui.log"
 }
 
-resource "null_resource" "text_generation_webui" {
-  count = var.power_state == "active" ? 1 : 0
+resource "null_resource" "provision" {
+  count = length(module.app_proxy.instance_ips)
 
-  triggers = {
-    always_run = "${timestamp()}"
+  connection {
+    type = "ssh"
+    agent = true
+    user = var.username
+    host = module.app_proxy.instance_ips[count.index]
   }
 
-  provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ANSIBLE_SSH_PIPELINING=True ANSIBLE_CONFIG=ansible.cfg ansible-playbook -i ${module.app_proxy.ansible_inventory_path} --forks=10 playbook.yaml"
-    working_dir = "${path.module}/ansible"
+  provisioner "remote-exec" {
+    inline = [<<-EOF
+      #!/bin/bash
+
+      cd /home/${var.username}
+
+      git clone https://github.com/oobabooga/text-generation-webui.git
+
+      cd text-generation-webui
+
+      export GPU_CHOICE=A
+      export USE_CUDA118=N
+
+      chmod a+x start_linux.sh
+
+      nohup ./start_linux.sh >../text-generation-webui.log 2>&1 &
+
+      sleep 1
+
+      EOF
+    ]
   }
-
-  depends_on = [
-    module.app_proxy.ansible-execution
-  ]
-}
-
-resource "local_file" "tgwui_config" {
-    content = templatefile("${path.module}/config.yaml.tmpl",
-    {
-      cacao_user = var.username
-      tgwui_version = var.tgwui_version
-      tgwui_cli_flags = "${var.tgwui_cli_flags} ${local.tgwui_cli_flag_cpu}"
-      tgwui_gpu_enabled = startswith(var.flavor, "g3")
-    })
-    filename = "${path.module}/ansible/config.yaml"
-}
-
-locals {
-  # this is js2 only? need to confirm with regional clouds
-  tgwui_cli_flag_cpu = startswith(var.flavor, "g3") ? "" : "--cpu"
-  proxy_auth_user = var.proxy_auth_user != "" ? var.proxy_auth_user : var.username
 }
 
 
-output "ansible_inventory_path" {
-  description = "path to the ansible inventory file"
-  value = module.app_proxy.ansible_inventory_path
-}
+
 output "instance_ips" {
   description = "IP addresses for all instances"
   value = module.app_proxy.instance_ips
@@ -71,4 +63,3 @@ output "instance_public_endpoints" {
   description = "Public endpoints for all instances"
   value = module.app_proxy.instance_public_endpoints
 }
-

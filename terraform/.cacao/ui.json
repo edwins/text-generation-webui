@@ -20,6 +20,13 @@
                     "ui_label": "Power state"
                 },
                 {
+                    "name": "image_name",
+                    "ui_label": "Boot image name",
+                    "parameters": [
+                        { "key": "windows_disclaimer", "value": true }
+                    ]
+                },
+                {
                     "type": "row",
                     "items":[
                         {
@@ -33,23 +40,37 @@
                     ]
                 },
                 {
-                    "name": "tgwui_version",
-                    "ui_label": "Version (leave as \"main\" for latest)"
+                    "type": "row",
+                    "items":[
+                        {
+                            "name": "proxy_auth_type",
+                            "ui_label": "Proxy Authentication Type"
+                        },
+                        {
+                            "name": "proxy_target_port",
+                            "ui_label": "Target Port"
+                        }
+                    ]
                 },
                 {
-                    "name": "tgwui_cli_flags",
-                    "ui_label": "Additional install flags (optional)",
-                    "help_text": "See https://github.com/oobabooga/text-generation-webui for a list of command-line flags"
+                    "type": "row",
+                    "items":[
+                        {
+                            "name": "proxy_auth_user",
+                            "ui_label": "Basic Auth Username",
+                            "help_text": "Authentication user, only when authentication type is basicauth"
+                        },
+                        {
+                            "name": "proxy_auth_pass",
+                            "ui_label": "Basic Auth Password",
+                            "help_text": "Authentication password, only when authentication type is basicauth"
+                        }
+                    ]
                 },
                 {
-                    "name": "proxy_auth_user",
-                    "ui_label": "Basic Auth Username (if blank, will use cacao username)",
-                    "help_text": "Authentication username, if blank will set to your cacao username"
-                },
-                {
-                    "name": "proxy_auth_pass",
-                    "ui_label": "Basic Auth Password (if blank, will generate password)",
-                    "help_text": "Authentication password, only when authentication type is basicauth"
+                    "name": "proxy_api_token",
+                    "ui_label": "Proxy API Token",
+                    "help_text": "API token, only when authentication type is apitoken"
                 },
                 {
                     "type": "advanced_settings",
