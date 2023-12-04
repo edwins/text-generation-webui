@@ -5,7 +5,7 @@ module "app_proxy" {
     image_name = "Featured-Ubuntu22"
     proxy_auth_type = "basicauth"
     proxy_target_port = 7860
-    proxy_auth_user = "myappuser"
+    proxy_auth_user = "appuser"
 
     # add this to your inputs.tf
     username = var.username
@@ -15,6 +15,8 @@ module "app_proxy" {
     instance_count = var.instance_count
     flavor = var.flavor
     keypair = var.keypair
+    power_state = var.power_state
+    user_data = var.user_data
     proxy_auth_pass = var.proxy_auth_pass # leaving this blank will generate a random password
 }
 

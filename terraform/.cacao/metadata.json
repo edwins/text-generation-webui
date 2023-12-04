@@ -1,10 +1,10 @@
 {
   "schema_url": "https://gitlab.com/cyverse/cacao-common/-/raw/master/template/metadata-schemas/v3/schema.json",
   "schema_version": "3",
-  "name": "deployment with application proxy and each vm is duplicated",
+  "name": "deploys text-generation-webui",
   "author": "Edwin Skidmore",
   "author_email": "edwin@cyverse.org",
-  "description": "launch one or more deployments with application proxy and identical configuration",
+  "description": "launches a text-generation-webui instance",
   "template_type": "openstack_terraform",
   "purpose": "openstack_compute",
   "cacao_pre_tasks": [],
@@ -39,18 +39,6 @@
       "default": 1,
       "description": "# of instances",
       "editable": true
-    },
-    {
-      "name": "image",
-      "type": "cacao_provider_image",
-      "description": "Boot image id",
-      "default": ""
-    },
-    {
-      "name": "image_name",
-      "type": "cacao_provider_image_name",
-      "description": "Boot image name",
-      "default": ""
     },
     {
       "name": "flavor",

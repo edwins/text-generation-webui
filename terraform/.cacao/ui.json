@@ -20,13 +20,6 @@
                     "ui_label": "Power state"
                 },
                 {
-                    "name": "image_name",
-                    "ui_label": "Boot image name",
-                    "parameters": [
-                        { "key": "windows_disclaimer", "value": true }
-                    ]
-                },
-                {
                     "type": "row",
                     "items":[
                         {
@@ -36,19 +29,6 @@
                         {
                             "name": "flavor",
                             "ui_label": "Size"
-                        }
-                    ]
-                },
-                {
-                    "type": "row",
-                    "items":[
-                        {
-                            "name": "proxy_auth_type",
-                            "ui_label": "Proxy Authentication Type"
-                        },
-                        {
-                            "name": "proxy_target_port",
-                            "ui_label": "Target Port"
                         }
                     ]
                 },
@@ -66,11 +46,6 @@
                             "help_text": "Authentication password, only when authentication type is basicauth"
                         }
                     ]
-                },
-                {
-                    "name": "proxy_api_token",
-                    "ui_label": "Proxy API Token",
-                    "help_text": "API token, only when authentication type is apitoken"
                 },
                 {
                     "type": "advanced_settings",
