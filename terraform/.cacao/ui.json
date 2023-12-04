@@ -33,19 +33,9 @@
                     ]
                 },
                 {
-                    "type": "row",
-                    "items":[
-                        {
-                            "name": "proxy_auth_user",
-                            "ui_label": "Basic Auth Username",
-                            "help_text": "Authentication user, only when authentication type is basicauth"
-                        },
-                        {
-                            "name": "proxy_auth_pass",
-                            "ui_label": "Basic Auth Password",
-                            "help_text": "Authentication password, only when authentication type is basicauth"
-                        }
-                    ]
+                    "name": "proxy_auth_pass",
+                    "ui_label": "Basic Auth Password",
+                    "help_text": "Authentication password, only when authentication type is basicauth"
                 },
                 {
                     "type": "advanced_settings",
