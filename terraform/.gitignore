@@ -1,0 +1,6 @@
+terraform.tfstate*
+plan.out
+*.swp
+.terraform*
+ansible/hosts.yml
+terraform.tfvars
