@@ -65,12 +65,6 @@
       "editable": true
     },
     {
-      "name": "ip_pool",
-      "type": "cacao_provider_external_network",
-      "default": "external_network_name",
-      "description": "IP pool"
-    },
-    {
       "name": "user_data",
       "type": "cacao_cloud_init",
       "description": "cloud init script"
@@ -102,40 +96,9 @@
       "default": true
     },
     {
-      "name": "proxy_auth_type",
-      "type": "string",
-      "description": "Proxy authentication type, either apitoken or basicauth",
-      "enum": ["apitoken", "basicauth"],
-      "default": "apitoken"
-    },
-    {
-      "name": "proxy_target_host",
-      "type": "string",
-      "description": "Proxy target ip address",
-      "default": "127.0.0.1"
-    },
-    {
-      "name": "proxy_target_port",
-      "type": "string",
-      "description": "Proxy target ip port",
-      "default": "8080"
-    },
-    {
-      "name": "proxy_auth_user",
-      "type": "string",
-      "description": "Proxy basicauth username, used only when proxy_auth_type = basicauth",
-      "default": "appuser"
-    },
-    {
       "name": "proxy_auth_pass",
       "type": "string",
       "description": "Proxy basicauth password, used only when proxy_auth_type = basicauth",
-      "default": ""
-    },
-    {
-      "name": "proxy_api_token",
-      "type": "string",
-      "description": "Proxy api token, used only when proxy_auth_type = apitoken",
       "default": ""
     }
   ]
