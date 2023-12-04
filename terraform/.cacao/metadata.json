@@ -41,6 +41,12 @@
       "editable": true
     },
     {
+      "name": "image_name",
+      "type": "cacao_provider_image_name",
+      "description": "Boot image name",
+      "default": ""
+    },
+    {
       "name": "flavor",
       "type": "cacao_provider_flavor",
       "description": "Instance type"
