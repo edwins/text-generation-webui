@@ -65,12 +65,6 @@
       "editable": true
     },
     {
-      "name": "ip_pool",
-      "type": "cacao_provider_external_network",
-      "default": "external_network_name",
-      "description": "IP pool"
-    },
-    {
       "name": "user_data",
       "type": "cacao_cloud_init",
       "description": "cloud init script"
