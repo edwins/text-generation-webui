@@ -34,7 +34,7 @@
                 },
                 {
                     "name": "proxy_auth_pass",
-                    "ui_label": "Basic Auth Password",
+                    "ui_label": "Basic Auth Password (username = appuser)",
                     "help_text": "Authentication password, only when authentication type is basicauth"
                 },
                 {
