@@ -18,7 +18,7 @@ module "app_proxy" {
     power_state = var.power_state
     user_data = var.user_data
     proxy_auth_pass = var.proxy_auth_pass # leaving this blank will generate a random password
-    proxy_expose_logfiles = var.proxy_expose_logfiles
+    proxy_expose_logfiles = "/home/ubuntu/text-generation-webui.log"
 }
 
 resource "null_resource" "provision" {
