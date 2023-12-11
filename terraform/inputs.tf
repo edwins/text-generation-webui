@@ -79,3 +79,8 @@ variable "proxy_auth_pass" {
   default = ""
 }
 
+variable "proxy_expose_logfiles" {
+  type = string
+  description = "a comma separated list of log file locations to expose on the web, at /logs/ e.g. /var/log/mylog.log"
+  default = ""
+}
