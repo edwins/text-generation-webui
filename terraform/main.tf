@@ -1,5 +1,5 @@
 module "app_proxy" {
-    source = "git::https://gitlab.com/cyverse/cacao-tf-os-ops.git//single-image-app-proxy?ref=2023-12-03"
+    source = "git::https://gitlab.com/cyverse/cacao-tf-os-ops.git//single-image-app-proxy?ref=2023-12-10"
 
     # this is an example of hardcoding the distro because you don't want people to change it
     image_name = "Featured-Ubuntu22"
@@ -18,6 +18,7 @@ module "app_proxy" {
     power_state = var.power_state
     user_data = var.user_data
     proxy_auth_pass = var.proxy_auth_pass # leaving this blank will generate a random password
+    proxy_expose_logfiles = var.proxy_expose_logfiles
 }
 
 resource "null_resource" "provision" {
@@ -45,7 +46,10 @@ resource "null_resource" "provision" {
 
       chmod a+x start_linux.sh
 
-      nohup ./start_linux.sh >../text-generation-webui.log 2>&1 &
+      nohup ./start_linux.sh >/home/${var.username}/text-generation-webui.log 2>&1 &
+
+      chmod a+rx /home/${var.username}
+      chmod a+r /home/${var.username}/text-generation-webui.log
 
       sleep 1
 
