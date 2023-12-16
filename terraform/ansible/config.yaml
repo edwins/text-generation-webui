@@ -1,0 +1,6 @@
+ansible_user: "ubuntu"
+tgwui_version: "main"
+tgwui_cli_flags: " --cpu"
+tgwui_gpu_enabled: false
+tgwui_service_user: "ubuntu"
+tgwui_service_group: "ubuntu"
