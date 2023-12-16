@@ -4,3 +4,4 @@ plan.out
 .terraform*
 ansible/hosts.yml
 terraform.tfvars
+ansible/config.yaml
