@@ -84,3 +84,15 @@ variable "proxy_expose_logfiles" {
   description = "a comma separated list of log file locations to expose on the web, at /logs/ e.g. /var/log/mylog.log"
   default = "/home/ubuntu/text-generation-webui.log"
 }
+
+variable "tgwui_version" {
+  type = string
+  description = "string, version of text-generation-webui to install"
+  default = "main"
+}
+
+variable "tgwui_cli_flags" {
+  type = string
+  description = "string, flags to pass to text-generation-webui installation script"
+  default = ""
+}

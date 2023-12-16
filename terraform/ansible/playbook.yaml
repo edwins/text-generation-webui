@@ -1,0 +1,41 @@
+# This section is for installing text-generation-webui
+- hosts: all
+  tags: text-generation-webui
+  become: true
+  gather_facts: true
+  vars_files:
+    - config.yaml
+  tasks:
+    - name: GIT; clone the text-generation-webui repo
+      ansible.builtin.git:
+        repo: 'https://github.com/oobabooga/text-generation-webui.git'
+        dest: /opt/text-generation-webui
+        version: "{{ tgwui_version }}"
+        force: yes
+
+    - name: FILE; set owner as 
+      ansible.builtin.file:
+        path: /opt/text-generation-webui
+        owner: "{{ tgwui_service_user }}"
+        group: "{{ tgwui_service_group }}"
+        recurse: true
+
+    - name: FILE; set the mode jic
+      ansible.builtin.file:
+        path: /opt/text-generation-webui/start_linux.sh
+        mode: '0755'
+
+    - name: TEMPLATE; copy over the systemd service file
+      ansible.builtin.template:
+        src: "text-generation-webui.service.j2"
+        dest: "/lib/systemd/system/text-generation-webui.service"
+      notify:
+        - Restart text-generation-webui
+
+  handlers:
+    - name: Restart text-generation-webui
+      ansible.builtin.systemd:
+        name: text-generation-webui
+        state: restarted     
+        enabled: true
+
