@@ -1,0 +1,22 @@
+[Unit]
+Description=Text Generation WebUI
+After=network.target
+
+[Service]
+{% if tgwui_gpu_enabled|bool %}
+Environment=GPU_CHOICE=A
+Environment=USE_CUDA118=N
+{% else %}
+Environment=GPU_CHOICE=N
+{% endif %}
+WorkingDirectory=/opt/text-generation-webui
+User={{ tgwui_service_user }}
+Group={{ tgwui_service_group }}
+Type=simple
+StandardOutput=append:/var/log/text-generation-webui.log
+StandardError=append:/var/log/text-generation-webui.log
+ExecStart=/opt/text-generation-webui/start_linux.sh {{ tgwui_cli_flags }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

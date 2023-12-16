@@ -96,6 +96,18 @@
       "default": true
     },
     {
+      "name": "tgwui_version",
+      "type": "string",
+      "description": "version of text-generation-webui, set to 'main' for the latest",
+      "default": "main"
+    },
+    {
+      "name": "tgwui_cli_flags",
+      "type": "string",
+      "description": "additional flags to pass into text-generation-webui installer",
+      "default": ""
+    },
+    {
       "name": "proxy_auth_pass",
       "type": "string",
       "description": "Proxy basicauth password, used only when proxy_auth_type = basicauth",
