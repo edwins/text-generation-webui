@@ -1,6 +1,6 @@
 module "app_proxy" {
     # source = "git::https://gitlab.com/cyverse/cacao-tf-os-ops.git//single-image-app-proxy?ref=2023-12-13"
-    source = "git::https://gitlab.com/cyverse/cacao-tf-os-ops.git//single-image-app-proxy?ref=main"
+    source = "git::https://gitlab.com/cyverse/cacao-tf-os-ops.git//single-image-app-proxy?ref=js2"
 
     # this is an example of hardcoding the distro because you don't want people to change it
     image_name = "Featured-Ubuntu22"
