@@ -30,7 +30,7 @@ resource "null_resource" "text_generation_webui" {
   }
 
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ANSIBLE_SSH_PIPELINING=True ANSIBLE_CONFIG=ansible.cfg ansible-playbook -i ../${module.app_proxy.ansible_inventory_path} --forks=10 playbook.yaml"
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ANSIBLE_SSH_PIPELINING=True ANSIBLE_CONFIG=ansible.cfg ansible-playbook -i ${module.app_proxy.ansible_inventory_path} --forks=10 playbook.yaml"
     working_dir = "${path.module}/ansible"
   }
 
