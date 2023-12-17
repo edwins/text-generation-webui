@@ -43,7 +43,7 @@
                 },
                 {
                     "name": "proxy_auth_user",
-                    "ui_label": "Basic Auth Username (default = cacao username)",
+                    "ui_label": "Basic Auth Username (if blank, will use cacao username)",
                     "help_text": "Authentication username, if blank will set to your cacao username"
                 },
                 {
