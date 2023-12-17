@@ -34,11 +34,11 @@
                 },
                 {
                     "name": "tgwui_version",
-                    "ui_label": "Version to install"
+                    "ui_label": "Version (leave as \"main\" for latest)"
                 },
                 {
                     "name": "tgwui_cli_flags",
-                    "ui_label": "Additional flags (optional)",
+                    "ui_label": "Additional install flags (optional)",
                     "help_text": "See https://github.com/oobabooga/text-generation-webui for a list of command-line flags"
                 },
                 {
