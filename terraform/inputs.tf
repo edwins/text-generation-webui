@@ -73,6 +73,12 @@ variable "root_storage_delete_on_termination" {
   default = true
 }
 
+variable "proxy_auth_user" {
+  type = string
+  description = "string, if proxy_api_or_app is 'app', this sets the basic auth username; if empty, then basic auth user will be the username"
+  default = ""
+}
+
 variable "proxy_auth_pass" {
   type = string
   description = "string, if proxy_api_or_app is 'app', and this is empty, then one will be generated and deposited into /opt/proxy-userpass.txt; should be set to a strong random string"
