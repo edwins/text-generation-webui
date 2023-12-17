@@ -6,7 +6,7 @@ module "app_proxy" {
     image_name = "Featured-Ubuntu22"
     proxy_auth_type = "basicauth"
     proxy_target_port = 7860
-    proxy_auth_user = "appuser"
+    # proxy_auth_user = "appuser"
 
     # add this to your inputs.tf
     username = var.username
@@ -18,12 +18,13 @@ module "app_proxy" {
     keypair = var.keypair
     power_state = var.power_state
     user_data = var.user_data
+    proxy_auth_user = local.proxy_auth_user
     proxy_auth_pass = var.proxy_auth_pass # leaving this blank will generate a random password
     proxy_expose_logfiles = "/var/log/text-generation-webui.log"
 }
 
 resource "null_resource" "text_generation_webui" {
-  count = length(module.app_proxy.instance_ips)
+  # count = length(module.app_proxy.instance_ips)
 
   triggers = {
     always_run = "${timestamp()}"
@@ -53,6 +54,7 @@ resource "local_file" "tgwui_config" {
 locals {
   # this is js2 only? need to confirm with regional clouds
   tgwui_cli_flag_cpu = startswith(var.flavor, "g3") ? "" : "--cpu"
+  proxy_auth_user = var.proxy_auth_user != "" ? var.proxy_auth_user : var.username
 }
 
 

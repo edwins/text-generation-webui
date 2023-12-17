@@ -108,6 +108,12 @@
       "default": ""
     },
     {
+      "name": "proxy_auth_user",
+      "type": "string",
+      "description": "sets the basicauth username; if blank, then the proxy_auth_user will be set to username",
+      "default": ""
+    },
+    {
       "name": "proxy_auth_pass",
       "type": "string",
       "description": "Proxy basicauth password, used only when proxy_auth_type = basicauth",

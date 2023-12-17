@@ -42,8 +42,13 @@
                     "help_text": "See https://github.com/oobabooga/text-generation-webui for a list of command-line flags"
                 },
                 {
+                    "name": "proxy_auth_user",
+                    "ui_label": "Basic Auth Username (default = cacao username)",
+                    "help_text": "Authentication username, if blank will set to your cacao username"
+                },
+                {
                     "name": "proxy_auth_pass",
-                    "ui_label": "Basic Auth Password (username = appuser)",
+                    "ui_label": "Basic Auth Password (if blank, will generate password)",
                     "help_text": "Authentication password, only when authentication type is basicauth"
                 },
                 {
