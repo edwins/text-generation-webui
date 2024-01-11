@@ -36,7 +36,7 @@ resource "null_resource" "text_generation_webui" {
   }
 
   depends_on = [
-    module.app_proxy.local_file
+    module.app_proxy.ansible-execution
   ]
 }
 
