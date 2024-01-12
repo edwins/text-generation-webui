@@ -24,7 +24,7 @@ module "app_proxy" {
 }
 
 resource "null_resource" "text_generation_webui" {
-  # count = length(module.app_proxy.instance_ips)
+  count = var.power_state == "active" ? 1 : 0
 
   triggers = {
     always_run = "${timestamp()}"
