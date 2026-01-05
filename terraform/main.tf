@@ -21,6 +21,10 @@ module "app_proxy" {
     proxy_auth_user = local.proxy_auth_user
     proxy_auth_pass = var.proxy_auth_pass # leaving this blank will generate a random password
     proxy_expose_logfiles = "/var/log/text-generation-webui.log"
+    root_storage_source = var.root_storage_source
+    root_storage_type = var.root_storage_type
+    root_storage_size = var.root_storage_size
+    root_storage_delete_on_termination = var.root_storage_delete_on_termination
 }
 
 resource "null_resource" "text_generation_webui" {

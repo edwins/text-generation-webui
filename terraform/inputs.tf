@@ -94,7 +94,7 @@ variable "proxy_expose_logfiles" {
 variable "tgwui_version" {
   type = string
   description = "string, version of text-generation-webui to install"
-  default = "main"
+  default = "v3.22"
 }
 
 variable "tgwui_cli_flags" {
