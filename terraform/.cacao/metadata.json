@@ -99,7 +99,7 @@
       "name": "tgwui_version",
       "type": "string",
       "description": "version of text-generation-webui, set to 'main' for the latest",
-      "default": "main"
+      "default": "v3.22"
     },
     {
       "name": "tgwui_cli_flags",

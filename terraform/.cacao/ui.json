@@ -1,67 +1,59 @@
 {
-    "schema_url": "https://gitlab.com/cyverse/cacao-common/-/raw/master/template/ui-schemas/v1/schema.json",
-    "schema_version": "1",
-    "author": "Sean Davey",
-    "author_email": "sdavey@arizona.edu",
-    "steps": [
+  "schema_url": "https://gitlab.com/cyverse/cacao-common/-/raw/master/template/ui-schemas/v1/schema.json",
+  "schema_version": "1",
+  "author": "Edwin Skidmore",
+  "author_email": "edwins@arizona.edu",
+  "steps": [
+    {
+      "title": "Parameters",
+      "items": [
         {
-            "title": "Parameters",
-            "items": [
-                {
-                    "name": "region",
-                    "ui_label": "Choose Region"
-                },
-                {
-                    "name": "instance_name",
-                    "ui_label": "Instance name"
-                },
-                {
-                    "name": "power_state",
-                    "ui_label": "Power state"
-                },
-                {
-                    "type": "row",
-                    "items":[
-                        {
-                            "name": "instance_count",
-                            "ui_label": "# of Instances"
-                        },
-                        {
-                            "name": "flavor",
-                            "ui_label": "Size"
-                        }
-                    ]
-                },
-                {
-                    "name": "tgwui_version",
-                    "ui_label": "Version (leave as \"main\" for latest)"
-                },
-                {
-                    "name": "tgwui_cli_flags",
-                    "ui_label": "Additional install flags (optional)",
-                    "help_text": "See https://github.com/oobabooga/text-generation-webui for a list of command-line flags"
-                },
-                {
-                    "name": "proxy_auth_user",
-                    "ui_label": "Basic Auth Username (if blank, will use cacao username)",
-                    "help_text": "Authentication username, if blank will set to your cacao username"
-                },
-                {
-                    "name": "proxy_auth_pass",
-                    "ui_label": "Basic Auth Password (if blank, will generate password)",
-                    "help_text": "Authentication password, only when authentication type is basicauth"
-                },
-                {
-                    "type": "advanced_settings",
-                    "collapsible": true,
-                    "title": "Advanced",
-                    "items": [
-                        {
-                            "name": "root_storage"
-                        }
-                    ]
-                }
-            ]
+          "name": "region",
+          "ui_label": "Choose Region"
+        },
+        {
+          "name": "instance_name",
+          "ui_label": "Instance name"
+        },
+        {
+          "name": "power_state",
+          "ui_label": "Power state"
+        },
+        {
+          "name": "flavor",
+          "ui_label": "Size"
+        },
+        {
+          "name": "tgwui_version",
+          "ui_label": "Version (leave as \"main\" for latest)"
+        },
+        {
+          "name": "tgwui_cli_flags",
+          "ui_label": "Additional install flags (optional)",
+          "help_text": "See https://github.com/oobabooga/text-generation-webui for a list of command-line flags"
+        },
+        {
+          "name": "proxy_auth_user",
+          "ui_label": "Basic Auth Username (if blank, will use cacao username)",
+          "help_text": "Authentication username, if blank will set to your cacao username"
+        },
+        {
+          "name": "proxy_auth_pass",
+          "ui_label": "Basic Auth Password (if blank, will generate password)",
+          "help_text": "Authentication password, only when authentication type is basicauth",
+          "field_type": "password"
+        },
+        {
+          "type": "advanced_settings",
+          "collapsible": true,
+          "title": "Advanced",
+          "items": [
+            {
+              "name": "root_storage"
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
