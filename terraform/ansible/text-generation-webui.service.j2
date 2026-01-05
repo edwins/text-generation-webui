@@ -15,7 +15,11 @@ Group={{ tgwui_service_group }}
 Type=simple
 StandardOutput=append:/var/log/text-generation-webui.log
 StandardError=append:/var/log/text-generation-webui.log
+{% if tgwui_api_enabled|bool %}
+ExecStart=/opt/text-generation-webui/start_linux.sh --api --api-key '{{ tgwui_api_key }}' --listen {{ tgwui_cli_flags }}
+{% else %}
 ExecStart=/opt/text-generation-webui/start_linux.sh {{ tgwui_cli_flags }}
+{% endif %}
 Restart=always
 
 [Install]

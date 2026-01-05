@@ -44,6 +44,20 @@
           "field_type": "password"
         },
         {
+          "type": "row",
+          "items": [
+            {
+              "name": "tgwui_api_enabled",
+              "ui_label": "Enable API on port 5000?"
+            },
+            {
+              "name": "tgwui_api_key",
+              "ui_label": "API Key (leave blank if same as password)",
+              "field_type": "password"
+            }
+          ]
+        },
+        {
           "type": "advanced_settings",
           "collapsible": true,
           "title": "Advanced",

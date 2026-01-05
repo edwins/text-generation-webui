@@ -51,6 +51,8 @@ resource "local_file" "tgwui_config" {
       tgwui_version = var.tgwui_version
       tgwui_cli_flags = "${var.tgwui_cli_flags} ${local.tgwui_cli_flag_cpu}"
       tgwui_gpu_enabled = startswith(var.flavor, "g3")
+      tgwui_api_enabled = var.tgwui_api_enabled
+      tgwui_api_key = tgwui_api_key == "" ? var.proxy_auth_pass : var.tgwui_api_key
     })
     filename = "${path.module}/ansible/config.yaml"
 }

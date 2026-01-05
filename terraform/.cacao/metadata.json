@@ -118,6 +118,18 @@
       "type": "string",
       "description": "Proxy basicauth password, used only when proxy_auth_type = basicauth",
       "default": ""
+    },
+    {
+      "name": "tgwui_api_enabled",
+      "type": "bool",
+      "description": "Enable API on port 5000?",
+      "default": false
+    },
+    {
+      "name": "tgwui_api_key",
+      "type": "string",
+      "description": "API key, if api enabled; Leave blank to set the same as password",
+      "default": ""
     }
   ]
 }

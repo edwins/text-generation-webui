@@ -102,3 +102,15 @@ variable "tgwui_cli_flags" {
   description = "string, flags to pass to text-generation-webui installation script"
   default = ""
 }
+
+variable "tgwui_api_enabled" {
+  type = bool
+  description = "bool, flag to enable api"
+  default = true
+}
+
+variable "tgwui_api_key" {
+  type = string
+  description = "string, api key; if empty, will be set to proxy password"
+  default = ""
+}
