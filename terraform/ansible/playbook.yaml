@@ -4,17 +4,17 @@
   tags: find_user
   become: false
   tasks:
-  - name: SET_FACT; set python interpreter
-    set_fact: ansible_python_interpreter="/usr/bin/python3"
+    - name: SET_FACT; set python interpreter
+      set_fact: ansible_python_interpreter="/usr/bin/python3"
 
-  - name: WAIT_FOR; Wait for ssh to be avaliable and connect
-    wait_for:
-      port: 22
-      host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
-      search_regex: OpenSSH
-      delay: 10
-      timeout: 600
-    connection: local
+    - name: WAIT_FOR; Wait for ssh to be avaliable and connect
+      wait_for:
+        port: 22
+        host: "{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}"
+        search_regex: OpenSSH
+        delay: 10
+        timeout: 600
+      connection: local
 
 # This section is for installing text-generation-webui
 - hosts: all
@@ -26,12 +26,12 @@
   tasks:
     - name: GIT; clone the text-generation-webui repo
       ansible.builtin.git:
-        repo: 'https://github.com/oobabooga/text-generation-webui.git'
+        repo: "https://github.com/oobabooga/text-generation-webui.git"
         dest: /opt/text-generation-webui
         version: "{{ tgwui_version }}"
         force: yes
 
-    - name: FILE; set owner as 
+    - name: FILE; set owner as
       ansible.builtin.file:
         path: /opt/text-generation-webui
         owner: "{{ tgwui_service_user }}"
@@ -41,7 +41,7 @@
     - name: FILE; set the mode jic
       ansible.builtin.file:
         path: /opt/text-generation-webui/start_linux.sh
-        mode: '0755'
+        mode: "0755"
 
     - name: TEMPLATE; copy over the systemd service file
       ansible.builtin.template:
@@ -50,10 +50,39 @@
       notify:
         - Restart text-generation-webui
 
+    - block:
+        - name: APT; install nginx for Ubuntu
+          apt:
+            name:
+              - nginx
+            state: latest
+            update_cache: yes
+          register: apt_result
+          until: apt_result is not failed
+          retries: 30
+          delay: 10
+
+        - name: FILE; web accessible directories
+          ansible.builtin.file:
+            path: "/etc/nginx/includes"
+            state: directory
+            mode: 0755
+
+        - name: TEMPLATE; copy over the api.conf file
+          ansible.builtin.template:
+            src: "api.conf.j2"
+            dest: "/etc/nginx/includes/api.conf"
+          notify:
+            - Restart nginx
+      when: tgwui_api_enabled is defined and tgwui_api_enabled|bool
+
   handlers:
     - name: Restart text-generation-webui
       ansible.builtin.systemd:
         name: text-generation-webui
-        state: restarted     
+        state: restarted
         enabled: true
-
+    - name: Restart nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted

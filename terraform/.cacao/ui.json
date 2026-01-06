@@ -39,7 +39,7 @@
           "items": [
             {
               "name": "tgwui_api_enabled",
-              "ui_label": "Enable API on port 5000?"
+              "ui_label": "Enable API at /v1/?"
             },
             {
               "name": "tgwui_api_key",
