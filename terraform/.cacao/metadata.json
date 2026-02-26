@@ -4,7 +4,7 @@
   "name": "deploys text-generation-webui",
   "author": "Edwin Skidmore",
   "author_email": "edwin@cyverse.org",
-  "description": "launches a text-generation-webui instance",
+  "description": "Launch a Text Generation Web UI on OpenStack. Text Generation Web UI run Large Language Models like LLaMA and GPT-J. It provides a user-friendly interface with features like model switching, chat, and notebook modes.",
   "template_type": "openstack_terraform",
   "purpose": "openstack_compute",
   "cacao_pre_tasks": [],
@@ -43,7 +43,7 @@
     {
       "name": "flavor",
       "type": "cacao_provider_flavor",
-      "description": "Instance type"
+      "description": "Instance size/type"
     },
     {
       "name": "project",
@@ -74,7 +74,7 @@
       "type": "string",
       "default": "image",
       "enum": ["image"],
-      "description": "Source of root disk; currently, only image is supported "
+      "description": "Source of root disk; currently, only image is supported"
     },
     {
       "name": "root_storage_type",
@@ -86,8 +86,8 @@
     {
       "name": "root_storage_size",
       "type": "integer",
-      "description": "Size of root storage in GB",
-      "default": -1
+      "default": -1,
+      "description": "Size of root storage in GB, -1 means use image size"
     },
     {
       "name": "root_storage_delete_on_termination",
